@@ -172,6 +172,8 @@ controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pr
             f 4 4 4 f . f . f . f 4 f f . . 
             f 4 4 4 f f . . . . f 4 4 e f . 
             `)
+        mySprite.setKind(SpriteKind.Player)
+        mySprite2.setKind(SpriteKind.player2)
         pause(5000)
         pause(5000)
         kraken1 = 0
@@ -569,6 +571,8 @@ controller.player1.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pr
             f 8 8 8 f . f . f . f 8 f f . . 
             f 8 8 8 f f . . . . f 8 8 c f . 
             `)
+        mySprite.setKind(SpriteKind.Player)
+        mySprite2.setKind(SpriteKind.player2)
         pause(5000)
         pause(5000)
         kraken = 0
@@ -838,7 +842,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (hp1 == 0) {
+    if (hp1 <= 0) {
         hp1 = 20
         tiles.placeOnTile(mySprite2, tiles.getTileLocation(100, 100))
         pause(5000)
@@ -846,7 +850,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (hp == 0) {
+    if (hp <= 0) {
         hp = 20
         tiles.placeOnTile(mySprite, tiles.getTileLocation(100, 100))
         pause(5000)
