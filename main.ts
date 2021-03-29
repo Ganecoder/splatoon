@@ -4,11 +4,13 @@ namespace SpriteKind {
     export const projectile3 = SpriteKind.create()
 }
 controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
-    if (direction1 == 1) {
-        fire1 = 1
-    }
-    if (direction1 == 2) {
-        fire1 = 2
+    if (tank1 > 0) {
+        if (direction1 == 1) {
+            fire1 = 1
+        }
+        if (direction1 == 2) {
+            fire1 = 2
+        }
     }
 })
 controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
@@ -145,7 +147,7 @@ controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
 })
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (jump2 == 0) {
-        mySprite2.vy = -180
+        mySprite2.vy = -190
         pause(100)
         jump2 = 1
     }
@@ -478,7 +480,7 @@ controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (jump == 0) {
-        mySprite.vy = -180
+        mySprite.vy = -190
         pause(100)
         jump = 1
     }
@@ -606,6 +608,7 @@ let special = 0
 let fire = 0
 let direction1 = 0
 let direction = 0
+let tank1 = 0
 let jump2 = 0
 let jump = 0
 let projectile5: Sprite = null
@@ -713,6 +716,8 @@ controller.player1.moveSprite(mySprite, 75, 0)
 controller.player2.moveSprite(mySprite2, 75, 0)
 jump = 0
 jump2 = 0
+let tank = 50
+tank1 = 50
 direction = 1
 direction1 = 2
 fire = 0
@@ -768,77 +773,59 @@ forever(function () {
     }
 })
 forever(function () {
-    if (fire1 == 1) {
-        projectile22 = sprites.createProjectileFromSprite(img`
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . 4 4 4 . . . . . . 
-            . . . . . 4 4 4 . . . . . . 
-            . . . . . 4 4 4 . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            `, mySprite2, 150, 0)
-        projectile22.ay = 200
-        projectile22.setKind(SpriteKind.projectile2)
-        pause(100)
+    if (tank1 > 0) {
+        if (fire1 == 1) {
+            projectile22 = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . 4 4 4 . . . . . . 
+                . . . . . 4 4 4 . . . . . . 
+                . . . . . 4 4 4 . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                `, mySprite2, 150, 0)
+            projectile22.ay = 200
+            projectile22.setKind(SpriteKind.projectile2)
+            tank1 += -1
+            pause(100)
+        }
     }
 })
 forever(function () {
-    if (fire1 == 2) {
-        projectile22 = sprites.createProjectileFromSprite(img`
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . 4 4 4 . . . . . . 
-            . . . . . 4 4 4 . . . . . . 
-            . . . . . 4 4 4 . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            `, mySprite2, -150, 0)
-        projectile22.setKind(SpriteKind.projectile2)
-        projectile22.ay = 200
-        pause(100)
-    }
-})
-forever(function () {
-    if (fire == 1) {
-        projectile = sprites.createProjectileFromSprite(img`
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . 8 8 8 . . . . . . 
-            . . . . . 8 8 8 . . . . . . 
-            . . . . . 8 8 8 . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            `, mySprite, 150, 0)
-        projectile.ay = 200
-        pause(100)
+    if (tank1 > 0) {
+        if (fire1 == 2) {
+            projectile22 = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . 4 4 4 . . . . . . 
+                . . . . . 4 4 4 . . . . . . 
+                . . . . . 4 4 4 . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                `, mySprite2, -150, 0)
+            projectile22.setKind(SpriteKind.projectile2)
+            projectile22.ay = 200
+            tank1 += -1
+            pause(100)
+        }
     }
 })
 forever(function () {
@@ -864,27 +851,57 @@ forever(function () {
     }
 })
 forever(function () {
-    if (fire == 2) {
-        projectile = sprites.createProjectileFromSprite(img`
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . 8 8 8 . . . . . . 
-            . . . . . 8 8 8 . . . . . . 
-            . . . . . 8 8 8 . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . 
-            `, mySprite, -150, 0)
-        projectile.ay = 200
-        pause(100)
+    if (tank > 0) {
+        if (fire == 2) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . 8 8 8 . . . . . . 
+                . . . . . 8 8 8 . . . . . . 
+                . . . . . 8 8 8 . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                `, mySprite, -150, 0)
+            projectile.ay = 200
+            tank += -1
+            pause(100)
+        }
+    }
+})
+forever(function () {
+    if (tank > 0) {
+        if (fire == 1) {
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . 8 8 8 . . . . . . 
+                . . . . . 8 8 8 . . . . . . 
+                . . . . . 8 8 8 . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . 
+                `, mySprite, 150, 0)
+            projectile.ay = 200
+            tank += -1
+            pause(100)
+        }
     }
 })
 forever(function () {
@@ -895,5 +912,37 @@ forever(function () {
 forever(function () {
     if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
         jump2 = 0
+    }
+})
+forever(function () {
+    if (tank > 50) {
+        tank = 50
+    }
+})
+forever(function () {
+    if (tank1 > 50) {
+        tank1 = 50
+    }
+})
+forever(function () {
+    if (tank < 0) {
+        tank = 0
+    }
+})
+forever(function () {
+    if (fire1 == 0) {
+        tank1 += 1
+        pause(500)
+    }
+})
+forever(function () {
+    if (fire == 0) {
+        tank += 1
+        pause(100)
+    }
+})
+forever(function () {
+    if (tank1 < 0) {
+        tank1 = 0
     }
 })
