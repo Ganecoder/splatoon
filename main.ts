@@ -150,6 +150,56 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
         jump2 = 1
     }
 })
+controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
+    if (special2 >= 50) {
+        kraken1 = 1
+        special2 = 0
+        mySprite2.setImage(img`
+            . . . . . . f 4 4 f . . . . . . 
+            . . . . . f 4 4 4 4 f . . . . . 
+            . . . . f 4 4 4 4 1 4 f . . . . 
+            . . . f 4 4 4 4 4 4 1 4 f . . . 
+            . . f 4 4 4 4 4 4 4 1 4 4 f . . 
+            . f 4 4 4 4 4 4 4 4 4 4 4 f . . 
+            f 4 4 4 4 4 4 4 4 4 4 4 4 4 f . 
+            f e 4 4 4 f 1 f f 1 f f 4 4 f . 
+            . f e e 4 f 1 f f 1 f f e e f . 
+            . . f f 4 f 1 1 1 1 1 1 f f . . 
+            . . . f 4 4 f f f f f f f . . . 
+            . . . f 4 4 4 4 4 4 4 4 f . . . 
+            . . f 4 4 e 4 e 4 e 4 e 4 f . . 
+            . f 4 4 4 f 4 f 4 f 4 f 4 f . . 
+            f 4 4 4 f . f . f . f 4 f f . . 
+            f 4 4 4 f f . . . . f 4 4 e f . 
+            `)
+        pause(5000)
+        pause(5000)
+        kraken1 = 0
+        mySprite2.setImage(img`
+            . . . . . f f f f f . . . . 
+            . . . . f 4 4 4 4 4 f . . . 
+            . . . f 4 4 4 4 4 4 4 f . . 
+            . . . f 4 4 4 4 4 4 4 f . . 
+            . f f 4 4 4 d d d 4 4 4 f . 
+            f 4 4 4 4 d d d d d 4 4 4 f 
+            f 4 4 4 d d d d d d 4 4 4 f 
+            f 4 4 4 d d d d d d 4 4 4 f 
+            . f f 2 f d d d d d f f f . 
+            . f 7 7 7 1 1 4 5 4 f . . . 
+            . f 4 4 4 1 2 4 5 4 f f . . 
+            . f 4 4 4 1 2 5 5 5 5 7 f . 
+            . f 4 4 4 1 1 5 5 f f f . . 
+            . f 7 7 7 f f f f f . . . . 
+            . . f f f 3 3 3 3 f . . . . 
+            . . . . . f f f f . . . . . 
+            `)
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.player2, function (sprite, otherSprite) {
+    if (kraken == 1) {
+        hp1 += -20
+    }
+})
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (direction1 == 1) {
         if (special2 >= 50) {
@@ -278,26 +328,54 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
         }
     }
 })
+sprites.onOverlap(SpriteKind.player2, SpriteKind.Player, function (sprite, otherSprite) {
+    if (kraken1 == 1) {
+        hp += -20
+    }
+})
 controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
-    direction1 = 1
-    mySprite2.setImage(img`
-        . . . . . f f f f f . . . . 
-        . . . . f 4 4 4 4 4 f . . . 
-        . . . f 4 4 4 4 4 4 4 f . . 
-        . . . f 4 4 4 4 4 4 4 f . . 
-        . f f 4 4 4 d d d 4 4 4 f . 
-        f 4 4 4 4 d d d d d 4 4 4 f 
-        f 4 4 4 d d d d d d 4 4 4 f 
-        f 4 4 4 d d d d d d 4 4 4 f 
-        . f f 2 f d d d d d f f f . 
-        . f 7 7 7 1 1 4 5 4 f . . . 
-        . f 4 4 4 1 2 4 5 4 f f . . 
-        . f 4 4 4 1 2 5 5 5 5 7 f . 
-        . f 4 4 4 1 1 5 5 f f f . . 
-        . f 7 7 7 f f f f f . . . . 
-        . . f f f 3 3 3 3 f . . . . 
-        . . . . . f f f f . . . . . 
-        `)
+    if (kraken1 == 0) {
+        direction1 = 1
+        mySprite2.setImage(img`
+            . . . . . f f f f f . . . . 
+            . . . . f 4 4 4 4 4 f . . . 
+            . . . f 4 4 4 4 4 4 4 f . . 
+            . . . f 4 4 4 4 4 4 4 f . . 
+            . f f 4 4 4 d d d 4 4 4 f . 
+            f 4 4 4 4 d d d d d 4 4 4 f 
+            f 4 4 4 d d d d d d 4 4 4 f 
+            f 4 4 4 d d d d d d 4 4 4 f 
+            . f f 2 f d d d d d f f f . 
+            . f 7 7 7 1 1 4 5 4 f . . . 
+            . f 4 4 4 1 2 4 5 4 f f . . 
+            . f 4 4 4 1 2 5 5 5 5 7 f . 
+            . f 4 4 4 1 1 5 5 f f f . . 
+            . f 7 7 7 f f f f f . . . . 
+            . . f f f 3 3 3 3 f . . . . 
+            . . . . . f f f f . . . . . 
+            `)
+    }
+    if (kraken1 == 1) {
+        direction1 = 1
+        mySprite2.setImage(img`
+            . . . . . . f 4 4 f . . . . . . 
+            . . . . . f 4 4 4 4 f . . . . . 
+            . . . . f 4 4 4 4 1 4 f . . . . 
+            . . . f 4 4 4 4 4 4 1 4 f . . . 
+            . . f 4 4 4 4 4 4 4 1 4 4 f . . 
+            . f 4 4 4 4 4 4 4 4 4 4 4 f . . 
+            f 4 4 4 4 4 4 4 4 4 4 4 4 4 f . 
+            f e 4 4 4 f 1 f f 1 f f 4 4 f . 
+            . f e e 4 f 1 f f 1 f f e e f . 
+            . . f f 4 f 1 1 1 1 1 1 f f . . 
+            . . . f 4 4 f f f f f f f . . . 
+            . . . f 4 4 4 4 4 4 4 4 f . . . 
+            . . f 4 4 e 4 e 4 e 4 e 4 f . . 
+            . f 4 4 4 f 4 f 4 f 4 f 4 f . . 
+            f 4 4 4 f . f . f . f 4 f f . . 
+            f 4 4 4 f f . . . . f 4 4 e f . 
+            `)
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.projectile2, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -309,47 +387,92 @@ controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Relea
     fire1 = 0
 })
 controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
-    direction1 = 2
-    mySprite2.setImage(img`
-        . . . . f f f f f . . . . . 
-        . . . f 4 4 4 4 4 f . . . . 
-        . . f 4 4 4 4 4 4 4 f . . . 
-        . . f 4 4 4 4 4 4 4 f . . . 
-        . f 4 4 4 d d d 4 4 4 f f . 
-        f 4 4 4 d d d d d 4 4 4 4 f 
-        f 4 4 4 d d d d d d 4 4 4 f 
-        f 4 4 4 d d d d d d 4 4 4 f 
-        . f f f d d d d d f 2 f f . 
-        . . . f 4 5 4 1 1 7 7 7 f . 
-        . . f f 4 5 4 2 1 4 4 4 f . 
-        . f 7 5 5 5 5 2 1 4 4 4 f . 
-        . . f f f 5 5 1 1 4 4 4 f . 
-        . . . . f f f f f 7 7 7 f . 
-        . . . . f 3 3 3 3 f f f . . 
-        . . . . . f f f f . . . . . 
-        `)
+    if (kraken1 == 0) {
+        direction1 = 2
+        mySprite2.setImage(img`
+            . . . . f f f f f . . . . . 
+            . . . f 4 4 4 4 4 f . . . . 
+            . . f 4 4 4 4 4 4 4 f . . . 
+            . . f 4 4 4 4 4 4 4 f . . . 
+            . f 4 4 4 d d d 4 4 4 f f . 
+            f 4 4 4 d d d d d 4 4 4 4 f 
+            f 4 4 4 d d d d d d 4 4 4 f 
+            f 4 4 4 d d d d d d 4 4 4 f 
+            . f f f d d d d d f 2 f f . 
+            . . . f 4 5 4 1 1 7 7 7 f . 
+            . . f f 4 5 4 2 1 4 4 4 f . 
+            . f 7 5 5 5 5 2 1 4 4 4 f . 
+            . . f f f 5 5 1 1 4 4 4 f . 
+            . . . . f f f f f 7 7 7 f . 
+            . . . . f 3 3 3 3 f f f . . 
+            . . . . . f f f f . . . . . 
+            `)
+    }
+    if (kraken1 == 1) {
+        direction1 = 2
+        mySprite2.setImage(img`
+            . . . . . . f 4 4 f . . . . . . 
+            . . . . . f 4 4 4 4 f . . . . . 
+            . . . . f 4 1 4 4 4 4 f . . . . 
+            . . . f 4 1 4 4 4 4 4 4 f . . . 
+            . . f 4 4 1 4 4 4 4 4 4 4 f . . 
+            . . f 4 4 4 4 4 4 4 4 4 4 4 f . 
+            . f 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
+            . f 4 4 f f 1 f f 1 f 4 4 4 e f 
+            . f e e f f 1 f f 1 f 4 e e f . 
+            . . f f 1 1 1 1 1 1 f 4 f f . . 
+            . . . f f f f f f f 4 4 f . . . 
+            . . . f 4 4 4 4 4 4 4 4 f . . . 
+            . . f 4 e 4 e 4 e 4 e 4 4 f . . 
+            . . f 4 f 4 f 4 f 4 f 4 4 4 f . 
+            . . f f 4 f . f . f . f 4 4 4 f 
+            . f e 4 4 f . . . . f f 4 4 4 f 
+            `)
+    }
 })
 controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
-    direction = 1
-    mySprite.setImage(img`
-        . . f f f . . . . . . . . 
-        . f 8 8 8 f . . . . . . . 
-        . . f 8 8 8 f . . . . . . 
-        . . . f 8 8 5 f f . . . . 
-        . . . f 8 5 8 8 8 f . . . 
-        . . . f 8 8 d d d f . . . 
-        . . . f 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 2 f 1 1 1 f . . . . 
-        . f 7 7 7 1 8 5 8 f . . . 
-        . f 8 8 8 2 8 5 8 f f . . 
-        . f 8 8 8 2 5 5 5 5 7 f . 
-        . f 8 8 8 1 5 5 f f f . . 
-        . f 7 7 7 f f f f . . . . 
-        . . f f f a a a f . . . . 
-        . . . . . f f f . . . . . 
-        `)
+    if (kraken == 0) {
+        direction = 1
+        mySprite.setImage(img`
+            . f f f f f . . . . . . . 
+            . f 8 8 8 8 f . . . . . . 
+            . . f 8 8 8 5 f f . . . . 
+            . . . f 5 5 8 8 8 f . . . 
+            . . . f 8 8 d d d f . . . 
+            . . . f 8 d d d d f . . . 
+            . . f 8 8 d d d d f . . . 
+            . . f 8 8 d d d d f . . . 
+            . . f 2 f 1 1 1 f . . . . 
+            . f 7 7 7 1 8 5 8 f . . . 
+            . f 8 8 8 2 8 5 8 f f . . 
+            . f 8 8 8 2 5 5 5 5 7 f . 
+            . f 8 8 8 1 5 5 f f f . . 
+            . f 7 7 7 f f f f . . . . 
+            . . f f f a a a f . . . . 
+            . . . . . f f f . . . . . 
+            `)
+    }
+    if (kraken == 1) {
+        direction = 1
+        mySprite.setImage(img`
+            . . . . . . f 8 8 f . . . . . . 
+            . . . . . f 8 8 8 8 f . . . . . 
+            . . . . f 8 8 8 8 1 8 f . . . . 
+            . . . f 8 8 8 8 8 8 1 8 f . . . 
+            . . f 8 8 8 8 8 8 8 1 8 8 f . . 
+            . f 8 8 8 8 8 8 8 8 8 8 8 f . . 
+            f 8 8 8 8 8 8 8 8 8 8 8 8 8 f . 
+            f c 8 8 8 f 1 f f 1 f f 8 8 f . 
+            . f c c 8 f 1 f f 1 f f c c f . 
+            . . f f 8 f 1 1 1 1 1 1 f f . . 
+            . . . f 8 8 f f f f f f f . . . 
+            . . . f 8 8 8 8 8 8 8 8 f . . . 
+            . . f 8 8 c 8 c 8 c 8 c 8 f . . 
+            . f 8 8 8 f 8 f 8 f 8 f 8 f . . 
+            f 8 8 8 f . f . f . f 8 f f . . 
+            f 8 8 8 f f . . . . f 8 8 c f . 
+            `)
+    }
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (jump == 0) {
@@ -381,31 +504,100 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.projectile3, function (sprite, o
     hp += -1
 })
 controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
-    direction = 2
-    mySprite.setImage(img`
-        . . . . . . . . f f f . . 
-        . . . . . . . f 8 8 8 f . 
-        . . . . . . f 8 8 8 f . . 
-        . . . . f f 5 8 8 f . . . 
-        . . . f 8 8 8 5 8 f . . . 
-        . . . f d d d 8 8 f . . . 
-        . . . f d d d d 8 f . . . 
-        . . . f d d d d 8 8 f . . 
-        . . . f d d d d 8 8 f . . 
-        . . . . f 1 1 1 f 2 f . . 
-        . . . f 8 5 8 1 7 7 7 f . 
-        . . f f 8 5 8 2 8 8 8 f . 
-        . f 7 5 5 5 5 2 8 8 8 f . 
-        . . f f f 5 5 1 8 8 8 f . 
-        . . . . f f f f 7 7 7 f . 
-        . . . . f a a a f f f . . 
-        . . . . . f f f . . . . . 
-        `)
+    if (kraken == 0) {
+        direction = 2
+        mySprite.setImage(img`
+            . . . . . . . f f f f f . 
+            . . . . . . f 8 8 8 8 f . 
+            . . . . f f 5 8 8 8 f . . 
+            . . . f 8 8 8 5 5 f . . . 
+            . . . f d d d 8 8 f . . . 
+            . . . f d d d d 8 f . . . 
+            . . . f d d d d 8 8 f . . 
+            . . . f d d d d 8 8 f . . 
+            . . . . f 1 1 1 f 2 f . . 
+            . . . f 8 5 8 1 7 7 7 f . 
+            . . f f 8 5 8 2 8 8 8 f . 
+            . f 7 5 5 5 5 2 8 8 8 f . 
+            . . f f f 5 5 1 8 8 8 f . 
+            . . . . f f f f 7 7 7 f . 
+            . . . . f a a a f f f . . 
+            . . . . . f f f . . . . . 
+            `)
+    }
+    if (kraken == 1) {
+        direction = 1
+        mySprite.setImage(img`
+            . . . . . . f 8 8 f . . . . . . 
+            . . . . . f 8 8 8 8 f . . . . . 
+            . . . . f 8 1 8 8 8 8 f . . . . 
+            . . . f 8 1 8 8 8 8 8 8 f . . . 
+            . . f 8 8 1 8 8 8 8 8 8 8 f . . 
+            . . f 8 8 8 8 8 8 8 8 8 8 8 f . 
+            . f 8 8 8 8 8 8 8 8 8 8 8 8 8 f 
+            . f 8 8 f f 1 f f 1 f 8 8 8 c f 
+            . f c c f f 1 f f 1 f 8 c c f . 
+            . . f f 1 1 1 1 1 1 f 8 f f . . 
+            . . . f f f f f f f 8 8 f . . . 
+            . . . f 8 8 8 8 8 8 8 8 f . . . 
+            . . f 8 c 8 c 8 c 8 c 8 8 f . . 
+            . . f 8 f 8 f 8 f 8 f 8 8 8 f . 
+            . . f f 8 f . f . f . f 8 8 8 f 
+            . f c 8 8 f . . . . f f 8 8 8 f 
+            `)
+    }
+})
+controller.player1.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
+    if (special >= 50) {
+        kraken = 1
+        special = 0
+        mySprite.setImage(img`
+            . . . . . . f 8 8 f . . . . . . 
+            . . . . . f 8 8 8 8 f . . . . . 
+            . . . . f 8 8 8 8 1 8 f . . . . 
+            . . . f 8 8 8 8 8 8 1 8 f . . . 
+            . . f 8 8 8 8 8 8 8 1 8 8 f . . 
+            . f 8 8 8 8 8 8 8 8 8 8 8 f . . 
+            f 8 8 8 8 8 8 8 8 8 8 8 8 8 f . 
+            f c 8 8 8 f 1 f f 1 f f 8 8 f . 
+            . f c c 8 f 1 f f 1 f f c c f . 
+            . . f f 8 f 1 1 1 1 1 1 f f . . 
+            . . . f 8 8 f f f f f f f . . . 
+            . . . f 8 8 8 8 8 8 8 8 f . . . 
+            . . f 8 8 c 8 c 8 c 8 c 8 f . . 
+            . f 8 8 8 f 8 f 8 f 8 f 8 f . . 
+            f 8 8 8 f . f . f . f 8 f f . . 
+            f 8 8 8 f f . . . . f 8 8 c f . 
+            `)
+        pause(5000)
+        pause(5000)
+        kraken = 0
+        mySprite.setImage(img`
+            . f f f f f . . . . . . . 
+            . f 8 8 8 8 f . . . . . . 
+            . . f 8 8 8 5 f f . . . . 
+            . . . f 5 5 8 8 8 f . . . 
+            . . . f 8 8 d d d f . . . 
+            . . . f 8 d d d d f . . . 
+            . . f 8 8 d d d d f . . . 
+            . . f 8 8 d d d d f . . . 
+            . . f 2 f 1 1 1 f . . . . 
+            . f 7 7 7 1 8 5 8 f . . . 
+            . f 8 8 8 2 8 5 8 f f . . 
+            . f 8 8 8 2 5 5 5 5 7 f . 
+            . f 8 8 8 1 5 5 f f f . . 
+            . f 7 7 7 f f f f . . . . 
+            . . f f f a a a f . . . . 
+            . . . . . f f f . . . . . 
+            `)
+    }
 })
 let special2 = 0
 let projectile32: Sprite = null
 let projectile4: Sprite = null
 let fire1 = 0
+let kraken1 = 0
+let kraken = 0
 let special = 0
 let fire = 0
 let direction1 = 0
@@ -416,11 +608,10 @@ let projectile5: Sprite = null
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
 mySprite = sprites.create(img`
-    . . f f f . . . . . . . . 
-    . f 8 8 8 f . . . . . . . 
-    . . f 8 8 8 f . . . . . . 
-    . . . f 8 8 5 f f . . . . 
-    . . . f 8 5 8 8 8 f . . . 
+    . f f f f f . . . . . . . 
+    . f 8 8 8 8 f . . . . . . 
+    . . f 8 8 8 5 f f . . . . 
+    . . . f 5 5 8 8 8 f . . . 
     . . . f 8 8 d d d f . . . 
     . . . f 8 d d d d f . . . 
     . . f 8 8 d d d d f . . . 
@@ -521,17 +712,44 @@ jump2 = 0
 direction = 1
 direction1 = 2
 fire = 0
-let hp = 100
-let hp1 = 100
+let hp = 20
+let hp1 = 20
 special = 0
+let rank = 0
+let rank1 = 0
+kraken = 0
+kraken1 = 0
+info.startCountdown(300)
 forever(function () {
     if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`Tile`)) {
         jump = 0
     }
 })
 forever(function () {
+    if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+        rank += 1
+        pause(500)
+    }
+})
+forever(function () {
     if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`Tile`)) {
         jump2 = 0
+    }
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+        rank1 += 1
+        pause(500)
+    }
+})
+forever(function () {
+    if (rank == 100) {
+        game.splash("player 1 wins")
+    }
+})
+forever(function () {
+    if (rank1 == 100) {
+        game.splash("player 2 wins")
     }
 })
 forever(function () {
@@ -542,7 +760,7 @@ forever(function () {
 forever(function () {
     if (special2 >= 50) {
         special2 = 100
-        tiles.setTilemap(tilemap`level6`)
+        tiles.setTilemap(tilemap`level10`)
     }
 })
 forever(function () {
@@ -620,13 +838,19 @@ forever(function () {
     }
 })
 forever(function () {
-    if (hp == 0) {
-        game.splash("player 2 wins")
+    if (hp1 == 0) {
+        hp1 = 20
+        tiles.placeOnTile(mySprite2, tiles.getTileLocation(100, 100))
+        pause(5000)
+        tiles.placeOnRandomTile(mySprite2, assets.tile`tile6`)
     }
 })
 forever(function () {
-    if (hp1 == 0) {
-        game.splash("player 1 wins")
+    if (hp == 0) {
+        hp = 20
+        tiles.placeOnTile(mySprite, tiles.getTileLocation(100, 100))
+        pause(5000)
+        tiles.placeOnRandomTile(mySprite, assets.tile`Level1`)
     }
 })
 forever(function () {
@@ -657,5 +881,15 @@ forever(function () {
             `, mySprite, -150, 0)
         projectile.ay = 200
         pause(100)
+    }
+})
+forever(function () {
+    if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+        jump = 0
+    }
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+        jump2 = 0
     }
 })
