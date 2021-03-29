@@ -281,23 +281,22 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
 controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
     direction1 = 1
     mySprite2.setImage(img`
-        . . f f f . . . . . . . . 
-        . f 8 8 8 f . . . . . . . 
-        . . f 8 8 8 f . . . . . . 
-        . . . f 8 8 5 f f . . . . 
-        . . . f 8 5 8 8 8 f . . . 
-        . . . f 8 8 d d d f . . . 
-        . . . f 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 2 f 1 1 1 f . . . . 
-        . f 7 7 7 1 8 5 8 f . . . 
-        . f 8 8 8 2 8 5 8 f f . . 
-        . f 8 8 8 2 5 5 5 5 7 f . 
-        . f 8 8 8 1 5 5 f f f . . 
-        . f 7 7 7 f f f f . . . . 
-        . . f f f a a a f . . . . 
-        . . . . . f f f . . . . . 
+        . . . . . f f f f f . . . . 
+        . . . . f 4 4 4 4 4 f . . . 
+        . . . f 4 4 4 4 4 4 4 f . . 
+        . . . f 4 4 4 4 4 4 4 f . . 
+        . f f 4 4 4 d d d 4 4 4 f . 
+        f 4 4 4 4 d d d d d 4 4 4 f 
+        f 4 4 4 d d d d d d 4 4 4 f 
+        f 4 4 4 d d d d d d 4 4 4 f 
+        . f f 2 f d d d d d f f f . 
+        . f 7 7 7 1 1 4 5 4 f . . . 
+        . f 4 4 4 1 2 4 5 4 f f . . 
+        . f 4 4 4 1 2 5 5 5 5 7 f . 
+        . f 4 4 4 1 1 5 5 f f f . . 
+        . f 7 7 7 f f f f f . . . . 
+        . . f f f 3 3 3 3 f . . . . 
+        . . . . . f f f f . . . . . 
         `)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.projectile2, function (sprite, otherSprite) {
@@ -312,23 +311,22 @@ controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Relea
 controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     direction1 = 2
     mySprite2.setImage(img`
-        . . f f f . . . . . . . . 
-        . f 8 8 8 f . . . . . . . 
-        . . f 8 8 8 f . . . . . . 
-        . . . f 8 8 5 f f . . . . 
-        . . . f 8 5 8 8 8 f . . . 
-        . . . f 8 8 d d d f . . . 
-        . . . f 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 2 f 1 1 1 f . . . . 
-        . f 7 7 7 1 8 5 8 f . . . 
-        . f 8 8 8 2 8 5 8 f f . . 
-        . f 8 8 8 2 5 5 5 5 7 f . 
-        . f 8 8 8 1 5 5 f f f . . 
-        . f 7 7 7 f f f f . . . . 
-        . . f f f a a a f . . . . 
-        . . . . . f f f . . . . . 
+        . . . . f f f f f . . . . . 
+        . . . f 4 4 4 4 4 f . . . . 
+        . . f 4 4 4 4 4 4 4 f . . . 
+        . . f 4 4 4 4 4 4 4 f . . . 
+        . f 4 4 4 d d d 4 4 4 f f . 
+        f 4 4 4 d d d d d 4 4 4 4 f 
+        f 4 4 4 d d d d d d 4 4 4 f 
+        f 4 4 4 d d d d d d 4 4 4 f 
+        . f f f d d d d d f 2 f f . 
+        . . . f 4 5 4 1 1 7 7 7 f . 
+        . . f f 4 5 4 2 1 4 4 4 f . 
+        . f 7 5 5 5 5 2 1 4 4 4 f . 
+        . . f f f 5 5 1 1 4 4 4 f . 
+        . . . . f f f f f 7 7 7 f . 
+        . . . . f 3 3 3 3 f f f . . 
+        . . . . . f f f f . . . . . 
         `)
 })
 controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
@@ -385,22 +383,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.projectile3, function (sprite, o
 controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     direction = 2
     mySprite.setImage(img`
-        . . f f f . . . . . . . . 
-        . f 8 8 8 f . . . . . . . 
-        . . f 8 8 8 f . . . . . . 
-        . . . f 8 8 5 f f . . . . 
-        . . . f 8 5 8 8 8 f . . . 
-        . . . f 8 8 d d d f . . . 
-        . . . f 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 8 8 d d d d f . . . 
-        . . f 2 f 1 1 1 f . . . . 
-        . f 7 7 7 1 8 5 8 f . . . 
-        . f 8 8 8 2 8 5 8 f f . . 
-        . f 8 8 8 2 5 5 5 5 7 f . 
-        . f 8 8 8 1 5 5 f f f . . 
-        . f 7 7 7 f f f f . . . . 
-        . . f f f a a a f . . . . 
+        . . . . . . . . f f f . . 
+        . . . . . . . f 8 8 8 f . 
+        . . . . . . f 8 8 8 f . . 
+        . . . . f f 5 8 8 f . . . 
+        . . . f 8 8 8 5 8 f . . . 
+        . . . f d d d 8 8 f . . . 
+        . . . f d d d d 8 f . . . 
+        . . . f d d d d 8 8 f . . 
+        . . . f d d d d 8 8 f . . 
+        . . . . f 1 1 1 f 2 f . . 
+        . . . f 8 5 8 1 7 7 7 f . 
+        . . f f 8 5 8 2 8 8 8 f . 
+        . f 7 5 5 5 5 2 8 8 8 f . 
+        . . f f f 5 5 1 8 8 8 f . 
+        . . . . f f f f 7 7 7 f . 
+        . . . . f a a a f f f . . 
         . . . . . f f f . . . . . 
         `)
 })
@@ -510,7 +508,7 @@ projectile5 = sprites.create(img`
     `, SpriteKind.projectile2)
 mySprite.ay = 500
 mySprite2.ay = 500
-tiles.setTilemap(tilemap`level1`)
+tiles.setTilemap(tilemap`level0`)
 tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 4))
 tiles.placeOnTile(mySprite2, tiles.getTileLocation(9, 4))
 tiles.placeOnTile(projectile, tiles.getTileLocation(100, 100))
@@ -527,6 +525,16 @@ let hp = 100
 let hp1 = 100
 special = 0
 forever(function () {
+    if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`Tile`)) {
+        jump = 0
+    }
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`Tile`)) {
+        jump2 = 0
+    }
+})
+forever(function () {
     projectile5.setFlag(SpriteFlag.GhostThroughWalls, true)
     projectile5.setFlag(SpriteFlag.GhostThroughTiles, true)
     projectile5.setKind(SpriteKind.projectile3)
@@ -534,33 +542,28 @@ forever(function () {
 forever(function () {
     if (special2 >= 50) {
         special2 = 100
-        tiles.setTilemap(tilemap`level2`)
-    }
-})
-forever(function () {
-    if (mySprite.tileKindAt(TileDirection.Bottom, img`Tile`)) {
-        jump = 0
+        tiles.setTilemap(tilemap`level6`)
     }
 })
 forever(function () {
     if (fire1 == 1) {
         projectile22 = sprites.createProjectileFromSprite(img`
-            . . . . f f f f f . . . . . 
-            . . . f 4 4 4 4 4 f . . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . f 4 4 4 d d d 4 4 4 f f . 
-            f 4 4 4 d d d d d 4 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            . f f f d d d d d f 2 f f . 
-            . . . f 4 5 4 1 1 7 7 7 f . 
-            . . f f 4 5 4 2 1 4 4 4 f . 
-            . f 7 5 5 5 5 2 1 4 4 4 f . 
-            . . f f f 5 5 1 1 4 4 4 f . 
-            . . . . f f f f f 7 7 7 f . 
-            . . . . f 3 3 3 3 f f f . . 
-            . . . . . f f f f . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . 4 4 4 . . . . . . 
+            . . . . . 4 4 4 . . . . . . 
+            . . . . . 4 4 4 . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
             `, mySprite2, 150, 0)
         projectile22.ay = 200
         projectile22.setKind(SpriteKind.projectile2)
@@ -568,53 +571,24 @@ forever(function () {
     }
 })
 forever(function () {
-    if (mySprite2.tileKindAt(TileDirection.Bottom, img`Tile`)) {
-        jump2 = 0
-    }
-})
-forever(function () {
-    if (fire == 1) {
-        projectile = sprites.createProjectileFromSprite(img`
-            . . . . f f f f f . . . . . 
-            . . . f 4 4 4 4 4 f . . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . f 4 4 4 d d d 4 4 4 f f . 
-            f 4 4 4 d d d d d 4 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            . f f f d d d d d f 2 f f . 
-            . . . f 4 5 4 1 1 7 7 7 f . 
-            . . f f 4 5 4 2 1 4 4 4 f . 
-            . f 7 5 5 5 5 2 1 4 4 4 f . 
-            . . f f f 5 5 1 1 4 4 4 f . 
-            . . . . f f f f f 7 7 7 f . 
-            . . . . f 3 3 3 3 f f f . . 
-            . . . . . f f f f . . . . . 
-            `, mySprite, 150, 0)
-        projectile.ay = 200
-        pause(100)
-    }
-})
-forever(function () {
     if (fire1 == 2) {
         projectile22 = sprites.createProjectileFromSprite(img`
-            . . . . f f f f f . . . . . 
-            . . . f 4 4 4 4 4 f . . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . f 4 4 4 d d d 4 4 4 f f . 
-            f 4 4 4 d d d d d 4 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            . f f f d d d d d f 2 f f . 
-            . . . f 4 5 4 1 1 7 7 7 f . 
-            . . f f 4 5 4 2 1 4 4 4 f . 
-            . f 7 5 5 5 5 2 1 4 4 4 f . 
-            . . f f f 5 5 1 1 4 4 4 f . 
-            . . . . f f f f f 7 7 7 f . 
-            . . . . f 3 3 3 3 f f f . . 
-            . . . . . f f f f . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . 4 4 4 . . . . . . 
+            . . . . . 4 4 4 . . . . . . 
+            . . . . . 4 4 4 . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
             `, mySprite2, -150, 0)
         projectile22.setKind(SpriteKind.projectile2)
         projectile22.ay = 200
@@ -622,25 +596,25 @@ forever(function () {
     }
 })
 forever(function () {
-    if (fire == 2) {
+    if (fire == 1) {
         projectile = sprites.createProjectileFromSprite(img`
-            . . . . f f f f f . . . . . 
-            . . . f 4 4 4 4 4 f . . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . . f 4 4 4 4 4 4 4 f . . . 
-            . f 4 4 4 d d d 4 4 4 f f . 
-            f 4 4 4 d d d d d 4 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            f 4 4 4 d d d d d d 4 4 4 f 
-            . f f f d d d d d f 2 f f . 
-            . . . f 4 5 4 1 1 7 7 7 f . 
-            . . f f 4 5 4 2 1 4 4 4 f . 
-            . f 7 5 5 5 5 2 1 4 4 4 f . 
-            . . f f f 5 5 1 1 4 4 4 f . 
-            . . . . f f f f f 7 7 7 f . 
-            . . . . f 3 3 3 3 f f f . . 
-            . . . . . f f f f . . . . . 
-            `, mySprite, -150, 0)
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . 8 8 8 . . . . . . 
+            . . . . . 8 8 8 . . . . . . 
+            . . . . . 8 8 8 . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            `, mySprite, 150, 0)
         projectile.ay = 200
         pause(100)
     }
@@ -658,6 +632,30 @@ forever(function () {
 forever(function () {
     if (special >= 50) {
         special = 100
-        tiles.setTilemap(tilemap`level2`)
+        tiles.setTilemap(tilemap`level6`)
+    }
+})
+forever(function () {
+    if (fire == 2) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . 8 8 8 . . . . . . 
+            . . . . . 8 8 8 . . . . . . 
+            . . . . . 8 8 8 . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . 
+            `, mySprite, -150, 0)
+        projectile.ay = 200
+        pause(100)
     }
 })
