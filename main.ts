@@ -217,6 +217,7 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
     if (select == 11) {
         if (direction1 == 1) {
             if (special2 >= 50) {
+                health_save = hp1
                 projectile4 = sprites.createProjectileFromSprite(img`
                     . . . . . . . . . . . . 
                     . . . . . . . . . . . . 
@@ -239,6 +240,7 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
                 special2 = 0
                 pause(1000)
                 for (let index = 0; index < 50; index++) {
+                    hp1 = 20
                     projectile5 = sprites.createProjectileFromSprite(img`
                         ...94444..
                         .999444...
@@ -274,7 +276,9 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
                         .999444...
                         `, mySprite2, 300, 0)
                     projectile5.setFlag(SpriteFlag.GhostThroughWalls, true)
+                    projectile5.setFlag(SpriteFlag.GhostThroughSprites, true)
                     pause(10)
+                    projectile5.setFlag(SpriteFlag.GhostThroughSprites, false)
                 }
             }
         }
@@ -302,6 +306,7 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
                 special2 = 0
                 pause(1000)
                 for (let index = 0; index < 50; index++) {
+                    hp1 = 20
                     projectile5 = sprites.createProjectileFromSprite(img`
                         ..44449...
                         ...444999.
@@ -623,6 +628,7 @@ controller.player1.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pr
 })
 let rank1 = 0
 let rank = 0
+let dead = 0
 let special2 = 0
 let projectile32: Sprite = null
 let projectile4: Sprite = null
@@ -630,19 +636,20 @@ let fire1 = 0
 let kraken1 = 0
 let kraken = 0
 let special = 0
+let hp1 = 0
 let fire = 0
 let direction1 = 0
 let direction = 0
 let tank1 = 0
 let jump2 = 0
 let jump = 0
+let health_save = 0
 let projectile5: Sprite = null
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
 let select = 0
 let textSprite = textsprite.create("player")
 select = 1
-let killer_wail = 0
 mySprite = sprites.create(img`
     . f f f f f . . . . . . . 
     . f 8 8 8 8 f . . . . . . 
@@ -743,6 +750,8 @@ tiles.placeOnTile(projectile22, tiles.getTileLocation(100, 100))
 tiles.placeOnTile(projectile5, tiles.getTileLocation(100, 100))
 tiles.placeOnTile(textSprite, tiles.getTileLocation(4, 2))
 controller.player1.moveSprite(mySprite, 75, 0)
+let cpu = randint(1, 4)
+health_save = 0
 jump = 0
 jump2 = 0
 let tank = 50
@@ -751,12 +760,27 @@ direction = 1
 direction1 = 2
 fire = 0
 let hp = 20
-let hp1 = 20
+hp1 = 20
 special = 0
 kraken = 0
 kraken1 = 0
-let dead = 0
+let rank_get = 0
 info.startCountdown(300)
+forever(function () {
+    projectile5.setKind(SpriteKind.projectile2)
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Center, assets.tile`tile3`) && direction1 == 0) {
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`) || mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`tile5`)) {
+            pause(100)
+        } else {
+            direction1 = 1
+        }
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`tile5`) && direction1 == 0) {
+            direction1 = 1
+        }
+    }
+})
 forever(function () {
     if (select == 1) {
         textSprite.setText("player")
@@ -773,12 +797,134 @@ forever(function () {
     }
 })
 forever(function () {
+    if (select == 12) {
+        if (dead == 0) {
+            if (kraken1 == 0) {
+                if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+                    cpu = 0
+                    if (kraken1 == 0) {
+                        if (dead == 0) {
+                            pause(1)
+                            if (mySprite.x > mySprite2.x) {
+                                direction1 = 2
+                                if (kraken1 == 0) {
+                                    if (dead == 0) {
+                                        pause(1)
+                                        direction1 = 1
+                                        if (mySprite2.x == 5) {
+                                            if (kraken1 == 0) {
+                                                direction1 = 0
+                                            }
+                                        }
+                                        fire1 = 1
+                                        if (kraken1 == 0) {
+                                            if (dead == 0) {
+                                                pause(1000)
+                                                if (dead == 0) {
+                                                    fire1 = 0
+                                                    pause(1000)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (mySprite.x < mySprite2.x) {
+                                if (kraken1 == 0) {
+                                    if (dead == 0) {
+                                        direction1 = 1
+                                        pause(30)
+                                        if (kraken1 == 0) {
+                                            if (dead == 0) {
+                                                direction1 = 2
+                                                if (mySprite2.x == 4) {
+                                                    if (kraken1 == 0) {
+                                                        if (dead == 0) {
+                                                            direction1 = 0
+                                                        }
+                                                    }
+                                                }
+                                                if (dead == 0) {
+                                                    fire1 = 2
+                                                    pause(1000)
+                                                    if (dead == 0) {
+                                                        fire1 = 0
+                                                        pause(1000)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`)) {
+        if (cpu > 0 && cpu < 5) {
+            if (dead == 0) {
+                cpu = randint(1, 4)
+            }
+        }
+    }
+})
+forever(function () {
+    if (select == 12) {
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`)) {
+            if (cpu == 1) {
+                direction1 = 2
+                pause(2000)
+                pause(500)
+                direction1 = 1
+                pause(500)
+                mySprite2.vy = -190
+                pause(200)
+                pause(200)
+                direction1 = 0
+            }
+            if (cpu == 2) {
+                direction1 = 2
+                pause(200)
+                mySprite2.vy = -190
+                pause(1000)
+                direction1 = 0
+            }
+            if (cpu == 3) {
+                direction1 = 2
+                pause(1000)
+                direction1 = 1
+                mySprite2.vy = -190
+            }
+            if (cpu == 4) {
+                direction1 = 2
+                mySprite2.vy = -190
+                pause(1000)
+                direction1 = 0
+            }
+            if (cpu == 10) {
+                pause(200)
+                direction1 = 1
+                pause(500)
+                mySprite2.vy = -190
+                pause(500)
+                direction1 = 0
+            }
+        }
+    }
+})
+forever(function () {
     if (tank1 < 0) {
         tank1 = 0
     }
 })
 forever(function () {
     if (select == 12) {
+        let killer_wail = 0
         if (killer_wail == 1) {
             if (direction1 == 3) {
                 if (special2 >= 50) {
@@ -923,6 +1069,46 @@ forever(function () {
 forever(function () {
     if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`Tile`)) {
         jump = 0
+    }
+})
+forever(function () {
+    if (select == 12) {
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`) && mySprite2.tileKindAt(TileDirection.Center, assets.tile`Level1`)) {
+            cpu = 10
+        }
+    }
+})
+forever(function () {
+    if (select == 12) {
+        if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile`) && mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+            if (hp > hp1) {
+                if (fire == 1) {
+                    if (fire1 == 0) {
+                        direction1 = 1
+                    }
+                }
+            }
+        }
+    }
+})
+forever(function () {
+    if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`)) {
+        jump = 0
+    }
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`)) {
+        jump2 = 0
+    }
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`)) {
+        jump2 = 0
+    }
+})
+forever(function () {
+    if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`) && mySprite2.tileKindAt(TileDirection.Center, assets.tile`tile6`)) {
+        cpu = 4
     }
 })
 forever(function () {
@@ -1100,6 +1286,20 @@ forever(function () {
     }
 })
 forever(function () {
+    if (select == 12) {
+        if (mySprite2.tileKindAt(TileDirection.Left, assets.tile`myTile0`) && mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`tile5`)) {
+            pause(200)
+            mySprite2.vy = -180
+            mySprite2.vx = -75
+        }
+        if (mySprite2.tileKindAt(TileDirection.Right, assets.tile`myTile0`) && mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`tile5`)) {
+            pause(100)
+            mySprite2.vy = -180
+            mySprite2.vx = 75
+        }
+    }
+})
+forever(function () {
     if (tank1 > 0) {
         if (fire1 == 2) {
             projectile22 = sprites.createProjectileFromSprite(img`
@@ -1142,21 +1342,6 @@ forever(function () {
     }
 })
 forever(function () {
-    if (select == 12) {
-        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`tile5`)) {
-            direction1 = 2
-            pause(2000)
-            pause(500)
-            direction1 = 1
-            pause(500)
-            mySprite2.vy = -200
-            pause(200)
-            pause(200)
-            direction1 = 0
-        }
-    }
-})
-forever(function () {
     if (hp <= 0) {
         hp = 20
         dead = 1
@@ -1164,6 +1349,15 @@ forever(function () {
         pause(5000)
         tiles.placeOnRandomTile(mySprite, assets.tile`Level1`)
         dead = 0
+    }
+})
+forever(function () {
+    if (select == 12) {
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+            if (special2 >= 50) {
+                kraken1 = 1
+            }
+        }
     }
 })
 forever(function () {
@@ -1190,15 +1384,6 @@ forever(function () {
             projectile.ay = 200
             tank += -1
             pause(100)
-        }
-    }
-})
-forever(function () {
-    if (select == 12) {
-        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
-            if (special2 >= 50) {
-                kraken1 = 1
-            }
         }
     }
 })
@@ -1240,11 +1425,28 @@ forever(function () {
     }
 })
 forever(function () {
-    if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile`) && mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
-        fire1 = 1
-        pause(5000)
-        fire1 = 0
+    if (select == 12) {
+        if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile`) && mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+            fire1 = 1
+            pause(5000)
+            fire1 = 0
+        }
     }
+})
+forever(function () {
+    if (select == 12) {
+        if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
+            if (dead == 1) {
+                direction1 = 1
+                pause(100)
+                direction1 = 2
+                pause(100)
+            }
+        }
+    }
+})
+forever(function () {
+    mySprite2.setKind(SpriteKind.player2)
 })
 forever(function () {
     if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
@@ -1276,72 +1478,5 @@ forever(function () {
     if (fire1 == 0) {
         tank1 += 1
         pause(500)
-    }
-})
-forever(function () {
-    if (select == 12) {
-        if (dead == 0) {
-            if (kraken1 == 0) {
-                if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
-                    if (kraken1 == 0) {
-                        if (dead == 0) {
-                            pause(1)
-                            if (mySprite.x > mySprite2.x) {
-                                direction1 = 2
-                                if (kraken1 == 0) {
-                                    if (dead == 0) {
-                                        pause(1)
-                                        direction1 = 1
-                                        if (mySprite2.x == 5) {
-                                            if (kraken1 == 0) {
-                                                direction1 = 0
-                                            }
-                                        }
-                                        fire1 = 1
-                                        if (kraken1 == 0) {
-                                            if (dead == 0) {
-                                                pause(1000)
-                                                if (dead == 0) {
-                                                    fire1 = 0
-                                                    pause(1000)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            if (mySprite.x < mySprite2.x) {
-                                if (kraken1 == 0) {
-                                    if (dead == 0) {
-                                        direction1 = 1
-                                        pause(30)
-                                        if (kraken1 == 0) {
-                                            if (dead == 0) {
-                                                direction1 = 2
-                                                if (mySprite2.x == 4) {
-                                                    if (kraken1 == 0) {
-                                                        if (dead == 0) {
-                                                            direction1 = 0
-                                                        }
-                                                    }
-                                                }
-                                                if (dead == 0) {
-                                                    fire1 = 2
-                                                    pause(1000)
-                                                    if (dead == 0) {
-                                                        fire1 = 0
-                                                        pause(1000)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 })
