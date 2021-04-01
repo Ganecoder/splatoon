@@ -954,7 +954,7 @@ forever(function () {
             6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
             `)
         tiles.setTilemap(tilemap`level14`)
-        tiles.placeOnTile(mysterious, tiles.getTileLocation(4, 6))
+        tiles.placeOnTile(mysterious, tiles.getTileLocation(5, 8))
         tiles.placeOnTile(mySprite2, tiles.getTileLocation(100, 100))
         mysterious.setImage(img`
             ................................................
@@ -1055,7 +1055,7 @@ forever(function () {
             ................................................
             `)
         mysterious.setFlag(SpriteFlag.Ghost, true)
-        mysterious.vy = -10
+        mysterious.vy = -9
         scene.cameraShake(5, 10000)
         pause(10000)
         mysterious.vy = 0
