@@ -221,6 +221,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.blast, function (sprite, oth
     tiles.placeOnTile(otherSprite, tiles.getTileLocation(100, 100))
     tiles.placeOnTile(sprite, tiles.getTileLocation(100, 100))
     boss_health += -2
+    special += 1
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (select == 11) {
@@ -1473,6 +1474,11 @@ forever(function () {
     }
 })
 forever(function () {
+    if (direction == 2 && fire == 1) {
+        fire = 2
+    }
+})
+forever(function () {
     if (boss_health == 80) {
         mysterious.setImage(assets.image`Temporary asset`)
     }
@@ -1489,6 +1495,11 @@ forever(function () {
     }
     if (boss_health == 0) {
         game.over(true)
+    }
+})
+forever(function () {
+    if (direction == 1 && fire == 2) {
+        fire = 1
     }
 })
 forever(function () {
@@ -1511,8 +1522,22 @@ forever(function () {
     }
 })
 forever(function () {
+    if (select == 11) {
+        if (direction1 == 1 && fire1 == 2) {
+            fire1 = 1
+        }
+    }
+})
+forever(function () {
     if (mySprite2.tileKindAt(TileDirection.Bottom, assets.tile`myTile0`)) {
         jump2 = 0
+    }
+})
+forever(function () {
+    if (select == 11) {
+        if (direction1 == 2 && fire1 == 1) {
+            fire1 = 2
+        }
     }
 })
 forever(function () {
@@ -1798,8 +1823,13 @@ forever(function () {
 })
 forever(function () {
     if (special >= 50) {
-        special = 100
-        tiles.setTilemap(tilemap`level6`)
+        if (easter_egg < 11) {
+            special = 100
+            tiles.setTilemap(tilemap`level6`)
+        } else {
+            tiles.setTilemap(tilemap`level16`)
+            special = 100
+        }
     }
 })
 forever(function () {
